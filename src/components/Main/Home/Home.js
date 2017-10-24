@@ -5,7 +5,7 @@ export default class Main extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#00E500'}}>
-        <Text>Welcome to Home!</Text>
+        <Text>Welcome to Home1!</Text>
       </View>
     );
   }
