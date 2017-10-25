@@ -52,9 +52,9 @@ export const Tabbar = TabNavigator(
     swipeEnabled: true,
     animationEnabled: true,
     tabBarOptions: {
-      tinColor: '#000000',
+      tinColor: '#AFAEAF',
       activeTintColor: '#112146',
-      inactiveTintColor: '#000000',
+      inactiveTintColor: '#AFAEAF',
       showIcon: true,
       showLabel: true,
       lazyLoad: true,
@@ -71,6 +71,11 @@ export const Tabbar = TabNavigator(
         paddingHorizontal: 10,
         paddingTop: 0,
         paddingBottom: 5,
+        shadowColor: '#2E272B',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.9,
+        shadowRadius: 0,
+        elevation: 3,
       },
       tabStyle: {
         padding: 0,

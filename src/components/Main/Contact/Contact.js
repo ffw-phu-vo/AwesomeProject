@@ -5,7 +5,7 @@ export default class Contact extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#4038B9'}}>
-        <Text>Welcome to Card!</Text>
+        <Text>Welcome to Contact!</Text>
       </View>
     );
   }
