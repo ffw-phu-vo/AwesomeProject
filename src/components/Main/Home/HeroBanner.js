@@ -4,7 +4,8 @@ import {
   View,
   Image,
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
 import bannerImage from '../../../media/temp/banner.jpg';
@@ -15,12 +16,14 @@ export default class HeroBanner extends Component {
   render() {
     return (
       <View style={ styles.container }>
-        <View style={ styles.blockTitleWrap }>
-            <Text style={ styles.blockTitle } >BANNER</Text>
-        </View>
-        <View style={ styles.contentBlock }>
-          <Image source={bannerImage} style={ styles.imageStyle } />
-        </View>
+        <TouchableOpacity onPress={ this.props.onOpen }>
+          <View style={ styles.blockTitleWrap }>
+              <Text style={ styles.blockTitle } >BANNER</Text>
+          </View>
+          <View style={ styles.contentBlock }>
+            <Image source={bannerImage} style={ styles.imageStyle } />
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }

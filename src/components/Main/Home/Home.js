@@ -1,17 +1,66 @@
 import React, { Component } from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
 import HeroBanner from './HeroBanner';
 import SlideBlock from './SlideBlock';
 import ListViewBlock from './ListViewBlock';
+import DetailA from './DetailA';
+import DetailB from './DetailB';
+import DetailC from './DetailC';
+
+class ContentHome extends Component {
+  openScreenDetailA() {
+    this.props.navigation.navigate('ScreenDetailA');
+  };
+
+  openScreenDetailB() {
+    this.props.navigation.navigate('ScreenDetailB');
+  };
+
+  openScreenDetailC() {
+    this.props.navigation.navigate('ScreenDetailC');
+  }
+
+  openGoBack() {
+    this.props.navigation.goBack();
+  }
+
+  render() {
+    return (
+      <ScrollView style={{ flex: 1, backgroundColor: '#DBDBD8' }}>
+        <HeroBanner onOpen={this.openScreenDetailA.bind(this)} />
+        <SlideBlock onOpen={this.openScreenDetailB.bind(this)} />
+        <ListViewBlock onOpen={this.openScreenDetailC.bind(this)} />
+      </ScrollView>
+    );
+  }
+}
+
+export const DetailStack = StackNavigator(
+  {
+    ScreenContentHome: {
+      screen: ContentHome,
+    },
+    ScreenDetailA: {
+      screen: DetailA,
+    },
+    ScreenDetailB: {
+      screen: DetailB,
+    },
+    ScreenDetailC: {
+      screen: DetailC,
+    },
+  },
+  {
+    headerMode: 'none'
+  }
+);
 
 export default class Main extends Component {
   render() {
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: '#DBDBD8' }}>
-        <HeroBanner />
-        <SlideBlock />
-        <ListViewBlock />
-      </ScrollView>
+      <DetailStack />
     );
   }
 }

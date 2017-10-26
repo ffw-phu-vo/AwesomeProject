@@ -4,7 +4,8 @@ import {
   View,
   Image,
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
 import ListViewImage from '../../../media/temp/sp1.jpeg';
@@ -19,20 +20,28 @@ export default class ListViewBlock extends Component {
         <View style={ styles.contentBlock }>
           <View style={ styles.listView }>
             <View style={ styles.listViewItem }>
-              <Image source={ListViewImage} style={ styles.imageStyle } />
-              <Text style={ styles.listViewTitle }>List view item 1</Text>
+              <TouchableOpacity onPress={ this.props.onOpen }>
+                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Text style={ styles.listViewTitle }>List view item 1</Text>
+              </TouchableOpacity>
             </View>
             <View style={ styles.listViewItem }>
-              <Image source={ListViewImage} style={ styles.imageStyle } />
-              <Text style={ styles.listViewTitle }>List view item 2</Text>
+              <TouchableOpacity onPress={ this.props.onOpen }>
+                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Text style={ styles.listViewTitle }>List view item 2</Text>
+              </TouchableOpacity>
             </View>
             <View style={ styles.listViewItem }>
-              <Image source={ListViewImage} style={ styles.imageStyle } />
-              <Text style={ styles.listViewTitle }>List view item 1</Text>
+              <TouchableOpacity onPress={ this.props.onOpen }>
+                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Text style={ styles.listViewTitle }>List view item 1</Text>
+              </TouchableOpacity>
             </View>
             <View style={ styles.listViewItem }>
-              <Image source={ListViewImage} style={ styles.imageStyle } />
-              <Text style={ styles.listViewTitle }>List view item 2</Text>
+              <TouchableOpacity onPress={ this.props.onOpen }>
+                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Text style={ styles.listViewTitle }>List view item 2</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

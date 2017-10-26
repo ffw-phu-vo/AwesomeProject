@@ -4,7 +4,8 @@ import {
   View,
   Image,
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
@@ -39,19 +40,25 @@ export default class SlideBlock extends Component {
         prevButton= {<Text style={styles.btnArrowSlide}>‹</Text>}
       >
         <View>
-          <Image source={bannerImage} style={ styles.imageStyle }>
-            <Text style={styles.cateTitle}>Slide 1</Text>
-          </Image>
+          <TouchableOpacity onPress={ this.props.onOpen }>
+            <Image source={bannerImage} style={ styles.imageStyle }>
+              <Text style={styles.cateTitle}>Slide 1</Text>
+            </Image>
+          </TouchableOpacity>
         </View>
         <View>
-          <Image source={bannerImage} style={ styles.imageStyle }>
-            <Text style={styles.cateTitle}>Slide 2</Text>
-          </Image>
+          <TouchableOpacity onPress={ this.props.onOpen }>
+            <Image source={bannerImage} style={ styles.imageStyle }>
+              <Text style={styles.cateTitle}>Slide 2</Text>
+            </Image>
+          </TouchableOpacity>
         </View>
         <View>
-          <Image source={bannerImage} style={ styles.imageStyle }>
-            <Text style={styles.cateTitle}>Slide 3</Text>
-          </Image>
+          <TouchableOpacity onPress={ this.props.onOpen }>
+            <Image source={bannerImage} style={ styles.imageStyle }>
+              <Text style={styles.cateTitle}>Slide 3</Text>
+            </Image>
+          </TouchableOpacity>
         </View>
       </Swiper>
     );
