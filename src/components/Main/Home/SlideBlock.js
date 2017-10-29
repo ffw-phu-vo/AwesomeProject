@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-import bannerImage from '../../../media/temp/little.jpg';
+import bannerImage from '../../../media/temp/960x540.png';
 
 const { width } = Dimensions.get('window');
 
@@ -41,23 +41,17 @@ export default class SlideBlock extends Component {
       >
         <View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image source={bannerImage} style={ styles.imageStyle }>
-              <Text style={styles.cateTitle}>Slide 1</Text>
-            </Image>
+            <Image source={bannerImage} style={ styles.imageStyle } />
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image source={bannerImage} style={ styles.imageStyle }>
-              <Text style={styles.cateTitle}>Slide 2</Text>
-            </Image>
+            <Image source={bannerImage} style={ styles.imageStyle } />
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image source={bannerImage} style={ styles.imageStyle }>
-              <Text style={styles.cateTitle}>Slide 3</Text>
-            </Image>
+            <Image source={bannerImage} style={ styles.imageStyle } />
           </TouchableOpacity>
         </View>
       </Swiper>
@@ -82,9 +76,9 @@ export default class SlideBlock extends Component {
   }
 }
 
-//933 x 465
+//960 x 540
 const imageWidth = width - 40;
-const imageHeight = (imageWidth / 933) * 465;
+const imageHeight = (imageWidth / 960) * 540;
 
 const styles = StyleSheet.create({
   container: {
@@ -111,7 +105,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: imageHeight,
     width: imageWidth,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   btnArrowSlide: {
@@ -119,8 +113,8 @@ const styles = StyleSheet.create({
     fontSize: 45
   },
   cateTitle: {
-    fontSize: 20,
-    fontFamily: 'Avenir',
-    color: '#9A9A9A'
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#112146'
   }
 });

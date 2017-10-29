@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import ListViewImage from '../../../media/temp/sp1.jpeg';
+import ListViewImage from '../../../media/temp/400x600.png';
 
 export default class ListViewBlock extends Component {
   render() {

@@ -8,7 +8,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import bannerImage from '../../../media/temp/banner.jpg';
+import bannerImage from '../../../media/temp/960x540.png';
 
 const { width } = Dimensions.get('window');
 
@@ -29,9 +29,9 @@ export default class HeroBanner extends Component {
   }
 }
 
-//933 x 465
+//960 x 540
 const imageWidth = width - 40;
-const imageHeight = (imageWidth / 933) * 465;
+const imageHeight = (imageWidth / 960) * 540;
 
 const styles = StyleSheet.create({
   container: {

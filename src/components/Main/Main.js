@@ -5,9 +5,7 @@ import Home from './Home/Home';
 import Contact from './Contact/Contact';
 import Header from './Header/Header';
 
-// import homeIconS from '../../media/appIcon/home.png';
 import homeIcon from '../../media/appIcon/home0.png';
-// import contactIconS from '../../media/appIcon/contact.png';
 import contactIcon from '../../media/appIcon/contact0.png';
 
 const styles = StyleSheet.create({
