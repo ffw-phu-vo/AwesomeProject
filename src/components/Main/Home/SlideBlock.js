@@ -18,7 +18,16 @@ export default class SlideBlock extends Component {
     super(props);
     this.state = {
       startswiper: false,
+      screenWidth: Dimensions.get('window').width,
     };
+
+    this.getNewDimensions = this.getNewDimensions.bind(this);
+  }
+
+  getNewDimensions(event){
+    this.setState({
+      screenWidth: Dimensions.get('window').width,
+    });
   }
 
   componentWillMount(){
@@ -26,6 +35,8 @@ export default class SlideBlock extends Component {
   }
 
   _renderSwiper() {
+    const imageWidth = this.state.screenWidth - 40;
+    const imageHeight = (imageWidth / 960) * 540;
     return(
       <Swiper
         width={imageWidth}
@@ -41,17 +52,44 @@ export default class SlideBlock extends Component {
       >
         <View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image source={bannerImage} style={ styles.imageStyle } />
+            <Image
+              source={bannerImage}
+              style={[
+                styles.imageStyle,
+                {
+                  width: imageWidth,
+                  height: imageHeight,
+                }
+              ]}
+            />
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image source={bannerImage} style={ styles.imageStyle } />
+            <Image
+              source={bannerImage}
+              style={[
+                styles.imageStyle,
+                {
+                  width: imageWidth,
+                  height: imageHeight,
+                }
+              ]}
+            />
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image source={bannerImage} style={ styles.imageStyle } />
+            <Image
+              source={bannerImage}
+              style={[
+                styles.imageStyle,
+                {
+                  width: imageWidth,
+                  height: imageHeight,
+                }
+              ]}
+            />
           </TouchableOpacity>
         </View>
       </Swiper>
@@ -60,7 +98,7 @@ export default class SlideBlock extends Component {
 
   render() {
     return (
-      <View style={ styles.container }>
+      <View style={styles.container} onLayout={this.getNewDimensions}>
         <View style={ styles.blockTitleWrap }>
           <Text style={ styles.blockTitle } >SLIDER</Text>
         </View>
@@ -76,9 +114,9 @@ export default class SlideBlock extends Component {
   }
 }
 
-//960 x 540
-const imageWidth = width - 40;
-const imageHeight = (imageWidth / 960) * 540;
+// //960 x 540
+// const imageWidth = width - 40;
+// const imageHeight = (imageWidth / 960) * 540;
 
 const styles = StyleSheet.create({
   container: {
@@ -102,12 +140,7 @@ const styles = StyleSheet.create({
   contentBlock: {
     marginBottom: 0,
   },
-  imageStyle: {
-    height: imageHeight,
-    width: imageWidth,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-  },
+  imageStyle: {},
   btnArrowSlide: {
     color: '#112146',
     fontSize: 45

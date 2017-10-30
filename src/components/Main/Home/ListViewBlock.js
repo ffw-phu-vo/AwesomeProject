@@ -11,35 +11,118 @@ import {
 import ListViewImage from '../../../media/temp/400x600.png';
 
 export default class ListViewBlock extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screenWidth: Dimensions.get('window').width,
+    };
+
+    this.getNewDimensions = this.getNewDimensions.bind(this);
+  }
+
+  getNewDimensions(event){
+    this.setState({
+      screenWidth: Dimensions.get('window').width,
+    });
+  }
+
   render() {
+    //400 x 600
+    const imageWidth = (this.state.screenWidth - 50) / 2;
+    const imageHeight = (imageWidth / 400) * 600;
+
     return (
-      <View style={ styles.container }>
+      <View style={ styles.container } onLayout={this.getNewDimensions}>
         <View style={ styles.blockTitleWrap }>
             <Text style={ styles.blockTitle } >LIST VIEW</Text>
         </View>
         <View style={ styles.contentBlock }>
           <View style={ styles.listView }>
-            <View style={ styles.listViewItem }>
+            <View
+              style={[
+                styles.listViewItem,
+                {
+                  width: imageWidth,
+                }
+              ]}
+            >
               <TouchableOpacity onPress={ this.props.onOpen }>
-                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Image
+                  source={ListViewImage}
+                  style={[
+                    styles.imageStyle,
+                    {
+                      width: imageWidth,
+                      height: imageHeight,
+                    }
+                  ]}
+                />
                 <Text style={ styles.listViewTitle }>List view item 1</Text>
               </TouchableOpacity>
             </View>
-            <View style={ styles.listViewItem }>
+            <View
+              style={[
+                styles.listViewItem,
+                {
+                  width: imageWidth,
+                }
+              ]}
+            >
               <TouchableOpacity onPress={ this.props.onOpen }>
-                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Image
+                  source={ListViewImage}
+                  style={[
+                    styles.imageStyle,
+                    {
+                      width: imageWidth,
+                      height: imageHeight,
+                    }
+                  ]}
+                />
                 <Text style={ styles.listViewTitle }>List view item 2</Text>
               </TouchableOpacity>
             </View>
-            <View style={ styles.listViewItem }>
+            <View
+              style={[
+                styles.listViewItem,
+                {
+                  width: imageWidth,
+                }
+              ]}
+            >
               <TouchableOpacity onPress={ this.props.onOpen }>
-                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Image
+                  source={ListViewImage}
+                  style={[
+                    styles.imageStyle,
+                    {
+                      width: imageWidth,
+                      height: imageHeight,
+                    }
+                  ]}
+                />
                 <Text style={ styles.listViewTitle }>List view item 1</Text>
               </TouchableOpacity>
             </View>
-            <View style={ styles.listViewItem }>
+            <View
+              style={[
+                styles.listViewItem,
+                {
+                  width: imageWidth,
+                }
+              ]}
+            >
               <TouchableOpacity onPress={ this.props.onOpen }>
-                <Image source={ListViewImage} style={ styles.imageStyle } />
+                <Image
+                  source={ListViewImage}
+                  style={[
+                    styles.imageStyle,
+                    {
+                      width: imageWidth,
+                      height: imageHeight,
+                    }
+                  ]}
+                />
                 <Text style={ styles.listViewTitle }>List view item 2</Text>
               </TouchableOpacity>
             </View>
@@ -49,10 +132,6 @@ export default class ListViewBlock extends Component {
     );
   }
 }
-const { width } = Dimensions.get('window');
-//452 x 361
-const ListViewImageWidth = (width - 50) / 2;
-const ListViewImageHeight = (ListViewImageWidth / 361) * 452;
 
 const styles = StyleSheet.create({
   container: {
@@ -78,8 +157,6 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   imageStyle: {
-    height: ListViewImageHeight,
-    width: ListViewImageWidth
   },
   listView: {
     flexDirection: 'row',
@@ -87,7 +164,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   listViewItem: {
-    width: ListViewImageWidth,
     marginBottom: 10,
     borderBottomWidth: 0,
     shadowColor: '#2E272B',

@@ -10,28 +10,49 @@ import {
 
 import bannerImage from '../../../media/temp/960x540.png';
 
-const { width } = Dimensions.get('window');
-
 export default class HeroBanner extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      screenWidth: Dimensions.get('window').width,
+    };
+
+    this.getNewDimensions = this.getNewDimensions.bind(this);
+  }
+
+  getNewDimensions(event){
+    this.setState({
+      screenWidth: Dimensions.get('window').width,
+    });
+  }
+
   render() {
+    //960 x 540
+    const imageWidth = this.state.screenWidth - 40;
+    const imageHeight = (imageWidth / 960) * 540;
     return (
-      <View style={ styles.container }>
-        <TouchableOpacity onPress={ this.props.onOpen }>
+      <View style={ styles.container } onLayout={this.getNewDimensions}>
           <View style={ styles.blockTitleWrap }>
-              <Text style={ styles.blockTitle } >BANNER</Text>
+            <Text style={ styles.blockTitle } >BANNER</Text>
           </View>
-          <View style={ styles.contentBlock }>
-            <Image source={bannerImage} style={ styles.imageStyle } />
-          </View>
+          <TouchableOpacity onPress={ this.props.onOpen }>
+            <View style={ styles.contentBlock }>
+              <Image
+                source={bannerImage}
+                style={[
+                  styles.imageStyle,
+                  {
+                    width: imageWidth,
+                    height: imageHeight,
+                  }
+                ]}
+              />
+            </View>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
-//960 x 540
-const imageWidth = width - 40;
-const imageHeight = (imageWidth / 960) * 540;
 
 const styles = StyleSheet.create({
   container: {
@@ -55,8 +76,5 @@ const styles = StyleSheet.create({
   contentBlock: {
     marginBottom: 0,
   },
-  imageStyle: {
-    height: imageHeight,
-    width: imageWidth
-  }
+  imageStyle: {}
 });
