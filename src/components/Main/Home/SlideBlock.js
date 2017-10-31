@@ -3,15 +3,15 @@ import {
   Text,
   View,
   Image,
-  Dimensions,
   StyleSheet,
+  Dimensions,
   TouchableOpacity
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-import bannerImage from '../../../media/temp/960x540.png';
+import { styles } from '../../../styles/styles';
 
-const { width } = Dimensions.get('window');
+import bannerImage from '../../../media/temp/960x540.png';
 
 export default class SlideBlock extends Component {
   constructor(props) {
@@ -34,7 +34,7 @@ export default class SlideBlock extends Component {
     setTimeout(() => {this.setState({startswiper: true})}, 500);
   }
 
-  _renderSwiper() {
+  renderSwiper() {
     const imageWidth = this.state.screenWidth - 40;
     const imageHeight = (imageWidth / 960) * 540;
     return(
@@ -54,13 +54,7 @@ export default class SlideBlock extends Component {
           <TouchableOpacity onPress={ this.props.onOpen }>
             <Image
               source={bannerImage}
-              style={[
-                styles.imageStyle,
-                {
-                  width: imageWidth,
-                  height: imageHeight,
-                }
-              ]}
+              style={{width: imageWidth,height: imageHeight}}
             />
           </TouchableOpacity>
         </View>
@@ -68,13 +62,7 @@ export default class SlideBlock extends Component {
           <TouchableOpacity onPress={ this.props.onOpen }>
             <Image
               source={bannerImage}
-              style={[
-                styles.imageStyle,
-                {
-                  width: imageWidth,
-                  height: imageHeight,
-                }
-              ]}
+              style={{width: imageWidth,height: imageHeight}}
             />
           </TouchableOpacity>
         </View>
@@ -82,13 +70,7 @@ export default class SlideBlock extends Component {
           <TouchableOpacity onPress={ this.props.onOpen }>
             <Image
               source={bannerImage}
-              style={[
-                styles.imageStyle,
-                {
-                  width: imageWidth,
-                  height: imageHeight,
-                }
-              ]}
+              style={{width: imageWidth,height: imageHeight}}
             />
           </TouchableOpacity>
         </View>
@@ -102,10 +84,10 @@ export default class SlideBlock extends Component {
         <View style={ styles.blockTitleWrap }>
           <Text style={ styles.blockTitle } >SLIDER</Text>
         </View>
-        <View style={ styles.contentBlock }>
+        <View>
           {
            this.state.startswiper === true ?
-           this._renderSwiper()
+           this.renderSwiper()
            : null
           }
         </View>
@@ -113,41 +95,3 @@ export default class SlideBlock extends Component {
     );
   }
 }
-
-// //960 x 540
-// const imageWidth = width - 40;
-// const imageHeight = (imageWidth / 960) * 540;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFF',
-    margin: 10,
-    justifyContent: 'space-between',
-    padding: 10,
-    shadowColor: '#2E272B',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 0,
-    elevation: 1,
-  },
-  blockTitleWrap: {
-    marginBottom: 10,
-  },
-  blockTitle: {
-    fontSize: 18,
-    color: '#AFAEAF'
-  },
-  contentBlock: {
-    marginBottom: 0,
-  },
-  imageStyle: {},
-  btnArrowSlide: {
-    color: '#112146',
-    fontSize: 45
-  },
-  cateTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#112146'
-  }
-});

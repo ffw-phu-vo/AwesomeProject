@@ -8,6 +8,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import { styles } from '../../../styles/styles';
+
 import bannerImage from '../../../media/temp/960x540.png';
 
 export default class HeroBanner extends Component {
@@ -36,16 +38,10 @@ export default class HeroBanner extends Component {
             <Text style={ styles.blockTitle } >BANNER</Text>
           </View>
           <TouchableOpacity onPress={ this.props.onOpen }>
-            <View style={ styles.contentBlock }>
+            <View>
               <Image
                 source={bannerImage}
-                style={[
-                  styles.imageStyle,
-                  {
-                    width: imageWidth,
-                    height: imageHeight,
-                  }
-                ]}
+                style={{width: imageWidth, height: imageHeight}}
               />
             </View>
         </TouchableOpacity>
@@ -53,28 +49,3 @@ export default class HeroBanner extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFF',
-    margin: 10,
-    justifyContent: 'space-between',
-    padding: 10,
-    shadowColor: '#2E272B',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 0,
-    elevation: 1,
-  },
-  blockTitleWrap: {
-    marginBottom: 10,
-  },
-  blockTitle: {
-    fontSize: 18,
-    color: '#AFAEAF'
-  },
-  contentBlock: {
-    marginBottom: 0,
-  },
-  imageStyle: {}
-});
