@@ -32,18 +32,19 @@ export default class HeroBanner extends Component {
     //960 x 540
     const imageWidth = this.state.screenWidth - 40;
     const imageHeight = (imageWidth / 960) * 540;
+
     return (
       <View style={ styles.container } onLayout={this.getNewDimensions}>
-          <View style={ styles.blockTitleWrap }>
-            <Text style={ styles.blockTitle } >BANNER</Text>
+        <View style={ styles.blockTitleWrap }>
+          <Text style={ styles.blockTitle } >BANNER</Text>
+        </View>
+        <TouchableOpacity onPress={ this.props.onOpen }>
+          <View>
+            <Image
+              source={bannerImage}
+              style={{width: imageWidth, height: imageHeight}}
+            />
           </View>
-          <TouchableOpacity onPress={ this.props.onOpen }>
-            <View>
-              <Image
-                source={bannerImage}
-                style={{width: imageWidth, height: imageHeight}}
-              />
-            </View>
         </TouchableOpacity>
       </View>
     );

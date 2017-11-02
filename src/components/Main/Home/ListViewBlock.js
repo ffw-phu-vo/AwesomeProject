@@ -1,3 +1,4 @@
+import ResponsiveStylesheet from "react-native-responsive-stylesheet";
 import React, { Component } from 'react';
 import {
   Text,
@@ -30,8 +31,12 @@ export default class ListViewBlock extends Component {
 
   render() {
     //400 x 600
-    const imageWidth = (this.state.screenWidth - 50) / 2;
-    const imageHeight = (imageWidth / 400) * 600;
+    let imageWidth = (this.state.screenWidth - 50) / 2;
+    let imageHeight = (imageWidth / 400) * 600;
+    if (this.state.screenWidth > 480) {
+      imageWidth = (this.state.screenWidth - 100) / 2;
+      imageHeight = (imageWidth / 400) * 600;
+    }
 
     return (
       <View style={[styles.container, listViewstyles.container]} onLayout={this.getNewDimensions}>
@@ -83,29 +88,36 @@ export default class ListViewBlock extends Component {
   }
 }
 
-const listViewstyles = StyleSheet.create({
-  container: {
-    paddingBottom: 0,
+const listViewstyles = ResponsiveStylesheet.createSized("min-width", {
+  0: {
+    container: {
+      paddingBottom: 0,
+    },
+    listView: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+    },
+    listViewItem: {
+      marginBottom: 10,
+      borderBottomWidth: 0,
+      shadowColor: gray,
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.3,
+      shadowRadius: 0,
+      elevation: 1,
+    },
+    listViewTitle: {
+      color: textColor,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      fontSize: 16,
+    }
   },
-  listView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-  },
-  listViewItem: {
-    marginBottom: 10,
-    borderBottomWidth: 0,
-    shadowColor: gray,
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.3,
-    shadowRadius: 0,
-    elevation: 1,
-  },
-  listViewTitle: {
-    color: textColor,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    fontSize: 16,
+  480: {
+    listViewItem: {
+      marginBottom: 20,
+    }
   }
 });
 
