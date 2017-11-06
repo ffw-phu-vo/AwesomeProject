@@ -42,8 +42,6 @@ export default class HeroBanner extends Component {
       <View style={ styles.container } onLayout={this.getNewDimensions}>
         <View style={ styles.blockTitleWrap }>
           <Text style={ styles.blockTitle } >BANNER</Text>
-          <Text>{imageWidth}</Text>
-          <Text>{imageHeight}</Text>
         </View>
         <TouchableOpacity onPress={ this.props.onOpen }>
           <View>

@@ -48,7 +48,7 @@ export default class DetailA extends Component {
             <View style={styles.blockTitleWrap}>
               <Text style={styles.blockTitle}>{banner.title}</Text>
             </View>
-            <View>
+            <View style={styles.blockTitleWrap}>
               <Image
                 source={{ uri: `${global.baseUrl}${banner.field_image}` }}
                 style={{width: imageWidth, height: imageHeight}}
