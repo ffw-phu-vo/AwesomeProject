@@ -10,6 +10,7 @@ import { StackNavigator } from 'react-navigation';
 
 // API
 import getBannerView from '../../../api/getBannerView';
+import getSliderView from '../../../api/getSliderView';
 
 // Style
 import { styles } from '../../../styles/styles';
@@ -28,6 +29,7 @@ class ContentHome extends Component {
     this.state = {
       isLoading: true,
       banner: [],
+      slider: [],
     }
   }
 
@@ -36,9 +38,26 @@ class ContentHome extends Component {
     // .then((response) => response.json())
     getBannerView()
     .then((responseJson) => {
+      // console.log('------banner------');
+      // console.log(responseJson[0]);
       this.setState({
         isLoading: false,
         banner: responseJson[0],
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+    // fetch('http://dev-awesomeproject-d8.pantheonsite.io/api/slider')
+    // .then((response) => response.json())
+    getSliderView()
+    .then((responseJson) => {
+      // console.log('------Slider------');
+      // console.log(responseJson);
+      this.setState({
+        isLoading: false,
+        slider: responseJson,
       });
     })
     .catch((error) => {
@@ -63,7 +82,7 @@ class ContentHome extends Component {
   }
 
   render() {
-    const { isLoading, banner } = this.state;
+    const { isLoading, banner, slider } = this.state;
     if (isLoading) {
       return (
         <View style={{flex: 1, paddingTop: 20}}>
@@ -74,7 +93,7 @@ class ContentHome extends Component {
     return (
       <ScrollView style={ styles.wrap }>
         <HeroBanner onOpen={this.openScreenDetailA.bind(this)} bannerImage={banner.field_image} />
-        <SlideBlock onOpen={this.openScreenDetailB.bind(this)} />
+        <SlideBlock onOpen={this.openScreenDetailB.bind(this)} slider={slider} />
         <ListViewBlock onOpen={this.openScreenDetailC.bind(this)} />
       </ScrollView>
     );

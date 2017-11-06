@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
+import global from '../../global';
+
 import { styles } from '../../../styles/styles';
 
 import bannerImage from '../../../media/temp/960x540.png';
@@ -41,6 +43,9 @@ export default class SlideBlock extends Component {
       imageWidth = this.state.screenWidth - 80;
       imageHeight = (imageWidth / 960) * 540;
     }
+    const { slider } = this.props;
+    // console.log('------Slider Component------');
+    // console.log(slider);
     return(
       <Swiper
         width={imageWidth}
@@ -54,30 +59,14 @@ export default class SlideBlock extends Component {
         nextButton= {<Text style={styles.btnArrowSlide}>›</Text>}
         prevButton= {<Text style={styles.btnArrowSlide}>‹</Text>}
       >
-        <View>
-          <TouchableOpacity onPress={ this.props.onOpen }>
+        { slider.map(item => (
+          <TouchableOpacity onPress={ this.props.onOpen } key={item.nid}>
             <Image
-              source={bannerImage}
+              source={{ uri: `${global.baseUrl}${item.field_image}` }}
               style={{width: imageWidth,height: imageHeight}}
             />
           </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image
-              source={bannerImage}
-              style={{width: imageWidth,height: imageHeight}}
-            />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity onPress={ this.props.onOpen }>
-            <Image
-              source={bannerImage}
-              style={{width: imageWidth,height: imageHeight}}
-            />
-          </TouchableOpacity>
-        </View>
+        )) }
       </Swiper>
     );
   }
