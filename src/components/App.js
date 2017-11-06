@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Text, Dimensions } from 'react-native';
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { DrawerNavigator } from 'react-navigation';
 
 import Main from './Main/Main';
 import Menu from './Menu/Menu';
-
-import { DrawerNavigator } from 'react-navigation';
 
 export const SideMenuBar = DrawerNavigator(
   {
@@ -30,33 +28,33 @@ export default class App extends Component {
 
 // import React, { Component } from 'react';
 // import { ActivityIndicator, ListView, Text, View } from 'react-native';
+// import getBannerView from '../api/getBannerView';
+// import global from './global';
 
 // export default class Movies extends Component {
 //   constructor(props) {
 //     super(props);
 //     this.state = {
-//       isLoading: true
+//       isLoading: true,
+//       dataSource: [],
 //     }
 //   }
 
 //   componentDidMount() {
-//     return fetch('https://facebook.github.io/react-native/movies.json')
-//       .then((response) => response.json())
-//       .then((responseJson) => {
-//         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-//         this.setState({
-//           isLoading: false,
-//           dataSource: ds.cloneWithRows(responseJson.movies),
-//         }, function() {
-//           // do something with new state
-//         });
-//       })
-//       .catch((error) => {
-//         console.error(error);
+//     getBannerView()
+//     .then((responseJson) => {
+//       this.setState({
+//         isLoading: false,
+//         dataSource: responseJson[0],
 //       });
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
 //   }
 
 //   render() {
+//     const { dataSource } = this.state;
 //     if (this.state.isLoading) {
 //       return (
 //         <View style={{flex: 1, paddingTop: 20}}>
@@ -67,10 +65,7 @@ export default class App extends Component {
 
 //     return (
 //       <View style={{flex: 1, paddingTop: 20}}>
-//         <ListView
-//           dataSource={this.state.dataSource}
-//           renderRow={(rowData) => <Text>{rowData.title}, {rowData.releaseYear}</Text>}
-//         />
+//         <Text>{dataSource.title}</Text>
 //       </View>
 //     );
 //   }

@@ -35,8 +35,12 @@ export default class SlideBlock extends Component {
   }
 
   renderSwiper() {
-    const imageWidth = this.state.screenWidth - 40;
-    const imageHeight = (imageWidth / 960) * 540;
+    let imageWidth = this.state.screenWidth - 40;
+    let imageHeight = (imageWidth / 960) * 540;
+    if (this.state.screenWidth > 480) {
+      imageWidth = this.state.screenWidth - 80;
+      imageHeight = (imageWidth / 960) * 540;
+    }
     return(
       <Swiper
         width={imageWidth}

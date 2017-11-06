@@ -22,6 +22,7 @@ export const styles = ResponsiveStylesheet.createSized("min-width", {
       shadowOpacity: 0.3,
       shadowRadius: 0,
       elevation: 1,
+      overflow: 'hidden'
     },
     blockTitleWrap: {
       marginBottom: 10,
@@ -32,6 +33,16 @@ export const styles = ResponsiveStylesheet.createSized("min-width", {
     btnArrowSlide: {
       color: primaryColor,
       fontSize: 45
+    },
+    btnArrowBackWrap: {
+      width: 24,
+      height: 24,
+      marginBottom: 15,
+    },
+    btnArrowBack: {
+      color: primaryColor,
+      fontSize: 45,
+      lineHeight: 24
     }
   },
   480: {
