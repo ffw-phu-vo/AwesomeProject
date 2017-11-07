@@ -1,8 +1,8 @@
 import global from '../components/global';
 
-const getBannerView = () => (
+const getSliderView = () => (
   fetch(global.baseUrl + '/api/slider')
   .then((response) => response.json())
 );
 
-export default getBannerView;
+export default getSliderView;

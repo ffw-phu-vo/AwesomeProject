@@ -63,14 +63,16 @@ class ContentHome extends Component {
     .catch((error) => {
       console.error(error);
     });
-  }
+  };
 
   openScreenDetailA() {
     this.props.navigation.navigate('ScreenDetailA', { banner: this.state.banner });
   };
 
-  openScreenDetailB() {
-    this.props.navigation.navigate('ScreenDetailB');
+  openScreenDetailB(nid) {
+    this.props.navigation.navigate('ScreenDetailB', { nid: nid });
+    // console.log('------Slider Detail------');
+    // console.log(nid);
   };
 
   openScreenDetailC() {

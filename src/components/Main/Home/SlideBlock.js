@@ -59,8 +59,8 @@ export default class SlideBlock extends Component {
         nextButton= {<Text style={styles.btnArrowSlide}>›</Text>}
         prevButton= {<Text style={styles.btnArrowSlide}>‹</Text>}
       >
-        { slider.map(item => (
-          <TouchableOpacity onPress={ this.props.onOpen } key={item.nid}>
+        { slider.map((item, i) => (
+          <TouchableOpacity onPress={(nid) => this.props.onOpen(item.nid) } key={i} nid={item.nid}>
             <Image
               source={{ uri: `${global.baseUrl}${item.field_image}` }}
               style={{width: imageWidth,height: imageHeight}}
