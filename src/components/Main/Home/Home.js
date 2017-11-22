@@ -75,8 +75,8 @@ class ContentHome extends Component {
     // console.log(nid);
   };
 
-  openScreenDetailC() {
-    this.props.navigation.navigate('ScreenDetailC');
+  openScreenDetailC(nid) {
+    this.props.navigation.navigate('ScreenDetailC', { nid: nid });
   }
 
   openGoBack() {
