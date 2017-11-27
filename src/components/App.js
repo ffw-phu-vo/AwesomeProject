@@ -5,6 +5,10 @@ import { DrawerNavigator } from 'react-navigation';
 import Main from './Main/Main';
 import Menu from './Menu/Menu';
 
+import getUser from '../api/getUser';
+import saveUser from '../api/saveUser';
+import global from './global';
+
 export const SideMenuBar = DrawerNavigator(
   {
     ScreenTabbar: {
@@ -19,6 +23,22 @@ export const SideMenuBar = DrawerNavigator(
 );
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    // saveUser(null);
+  }
+
+  componentDidMount() {
+    getUser()
+    .then(responseJson => {
+      console.log('-------test2-------');
+      console.log(responseJson);
+      if (responseJson != null) {
+        global.onSignIn(responseJson);
+      }
+    });
+  }
+
   render() {
     return (
       <SideMenuBar />
