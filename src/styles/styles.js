@@ -43,6 +43,9 @@ export const styles = ResponsiveStylesheet.createSized("min-width", {
       color: primaryColor,
       fontSize: 45,
       lineHeight: 24
+    },
+    textWhite: {
+      color: white
     }
   },
   480: {

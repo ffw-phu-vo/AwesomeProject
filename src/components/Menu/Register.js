@@ -5,33 +5,56 @@ import global from '../global';
 import getUser from '../../api/getUser';
 import saveUser from '../../api/saveUser';
 import signIn from '../../api/signIn';
+import logOut from '../../api/logOut';
+import createUser from '../../api/createUser';
 
 import { styles } from '../../styles/styles';
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
         name: '',
+        email: '',
         pass: ''
     };
   }
 
-  onSignIn() {
-    const { name, pass } = this.state;
-    signIn(name, pass)
+  registerUser() {
+    const { name, email, pass } = this.state;
+    createUser(name, email, pass)
     .then(responseJson => {
-      if (responseJson.csrf_token !== undefined) {
-        saveUser(responseJson);
-        global.onSignIn(responseJson);
-        Alert.alert(
-          'Alert Title',
-          'Successfully',
-          [
-            {text: 'OK', onPress: () => this.props.navigation.goBack()},
-          ],
-          { cancelable: false }
-        );
+      if (responseJson.uid !== undefined) {
+        logOut()
+        .then(() => {
+          signIn(name, pass)
+          .then(responseJson => {
+            if (responseJson.csrf_token !== undefined) {
+              saveUser(responseJson);
+              global.onSignIn(responseJson);
+              Alert.alert(
+                'Alert Title',
+                'Successfully',
+                [
+                  {text: 'OK', onPress: () => this.props.navigation.goBack()},
+                ],
+                { cancelable: false }
+              );
+            }
+            else {
+              Alert.alert(
+                'Alert Title',
+                responseJson.message,
+                [
+                  {text: 'OK', onPress: () => {}},
+                ],
+                { cancelable: false }
+              );
+            }
+          })
+          .catch(err => {console.log(err)});
+        })
+        .catch(err => console.log(err));
       }
       else {
         Alert.alert(
@@ -44,12 +67,12 @@ export default class Login extends Component {
         );
       }
     })
-    .catch(err => {console.log(err)});
+    .catch(err => console.log(err));
   }
 
   render() {
     const { wrap, inputStyle, bigButton, buttonText } = stylesForm;
-    const { name, pass } = this.state;
+    const { name, email, pass } = this.state;
     return (
       <ScrollView style={wrap}>
         <View>
@@ -60,7 +83,7 @@ export default class Login extends Component {
           </View>
           <View>
             <View style={styles.blockTitleWrap}>
-              <Text style={[styles.blockTitle, styles.textWhite]}>LOG IN</Text>
+              <Text style={[styles.blockTitle, styles.textWhite]}>Create new account</Text>
             </View>
             <TextInput
               style={inputStyle}
@@ -71,14 +94,21 @@ export default class Login extends Component {
             />
             <TextInput
               style={inputStyle}
+              placeholder="Enter your email"
+              value={email}
+              onChangeText={text => this.setState({ email: text })}
+              underlineColorAndroid="transparent"
+            />
+            <TextInput
+              style={inputStyle}
               placeholder="Enter your password"
               value={pass}
               onChangeText={text => this.setState({ pass: text })}
               secureTextEntry
               underlineColorAndroid="transparent"
             />
-            <TouchableOpacity style={bigButton} onPress={this.onSignIn.bind(this)}>
-              <Text style={buttonText}>SIGN IN</Text>
+            <TouchableOpacity style={bigButton} onPress={this.registerUser.bind(this)}>
+              <Text style={buttonText}>Create new account</Text>
             </TouchableOpacity>
           </View>
         </View>

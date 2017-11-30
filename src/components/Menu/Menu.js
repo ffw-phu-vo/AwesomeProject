@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator
+} from 'react-native';
 import Login from './Login';
+import Register from './Register';
 
-import { DrawerNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 import getUser from '../../api/getUser';
 import saveUser from '../../api/saveUser';
+import logOut from '../../api/logOut';
 import global from '../global';
 
 export class MainMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: null };
+    this.state = {
+      isLoadingUser: true,
+      user: null
+    };
     global.onSignIn = this.onSignIn.bind(this);
   }
 
   onSignIn(user) {
     if (user != null) {
       const { uid } = user.current_user;
+      this.setState({isLoadingUser: true});
       fetch('http://dev-awesomeproject-d8.pantheonsite.io/user/'+ uid + '?_format=json', {
         method: 'GET',
         headers: {
@@ -26,9 +40,10 @@ export class MainMenu extends Component {
       })
       .then(response => response.json())
       .then(responseJson => {
-        this.setState({ user: responseJson });
-        console.log('-------test-------');
-        console.log(responseJson);
+        this.setState({
+          isLoadingUser: false,
+          user: responseJson
+        });
       })
       .catch(err => console.log(err));
     }
@@ -38,12 +53,7 @@ export class MainMenu extends Component {
   }
 
   onSignOut() {
-    fetch('http://dev-awesomeproject-d8.pantheonsite.io/user/logout', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'text/html',
-      }
-    })
+    logOut()
     .then(() => {
       saveUser(null);
       global.onSignIn(null);
@@ -53,7 +63,7 @@ export class MainMenu extends Component {
 
   render() {
     const { wrap, inputStyle, bigButton, buttonText } = styles;
-    const { user } = this.state;
+    const { isLoadingUser, user } = this.state;
 
     let mainMenuMK = '';
     if (user == null) {
@@ -62,22 +72,29 @@ export class MainMenu extends Component {
           <TouchableOpacity style={bigButton} onPress={() => this.props.navigation.navigate('ScreenLogin')}>
             <Text style={buttonText}>Log in</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={bigButton} onPress={() => {}}>
+          <TouchableOpacity style={bigButton} onPress={() => this.props.navigation.navigate('ScreenRegister')}>
             <Text style={buttonText}>Create new account</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={bigButton} onPress={this.onSignOut.bind(this)}>
+          {/*<TouchableOpacity style={bigButton} onPress={this.onSignOut.bind(this)}>
             <Text style={buttonText}>SIGN OUT</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
+        </View>
+      );
+    }
+    else if (isLoadingUser) {
+      mainMenuMK = (
+        <View style={{flex: 1, paddingTop: 20}}>
+          <ActivityIndicator />
         </View>
       );
     }
     else {
       mainMenuMK = (
         <View>
-          <Image
+          {/*<Image
             source={{uri: user.user_picture[0].url}}
             style={{width: 100, height: 100}}
-          />
+          />*/}
           <Text style={buttonText}>Name: {user.name[0].value}</Text>
           <Text style={buttonText}>Mail: {user.mail[0].value}</Text>
           <TouchableOpacity style={bigButton} onPress={this.onSignOut.bind(this)}>
@@ -95,7 +112,7 @@ export class MainMenu extends Component {
   }
 }
 
-const MenuDrawer = DrawerNavigator(
+const MenuStack = StackNavigator(
   {
     ScreenMenu: {
       screen: MainMenu,
@@ -103,16 +120,19 @@ const MenuDrawer = DrawerNavigator(
     ScreenLogin: {
       screen: Login,
     },
+    ScreenRegister: {
+      screen: Register,
+    },
   },
   {
-    drawerPosition: 'left',
+    headerMode: 'none'
   }
 );
 
 export default class Menu extends Component {
   render() {
     return (
-      <MenuDrawer />
+      <MenuStack />
     );
   }
 }

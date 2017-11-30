@@ -95,9 +95,11 @@ export default class ListViewBlock extends Component {
     const { isLoadMoreBtn } = this.state;
     let btnLoadMore = null;
     if (isLoadMoreBtn) {
-      btnLoadMore = <TouchableOpacity onPress={this.onFetchNewData}>
-                      <Text style={listViewstyles.btnLoadMore}>Load more</Text>
-                    </TouchableOpacity>
+      btnLoadMore = (
+        <TouchableOpacity onPress={this.onFetchNewData}>
+          <Text style={listViewstyles.btnLoadMore}>Load more</Text>
+        </TouchableOpacity>
+      );
     }
 
     return (
