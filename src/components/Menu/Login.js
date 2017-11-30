@@ -60,7 +60,7 @@ export default class Login extends Component {
           </View>
           <View>
             <View style={styles.blockTitleWrap}>
-              <Text style={[styles.blockTitle, styles.textWhite]}>LOG IN</Text>
+              <Text style={[styles.blockTitle, styles.textWhite]}>Log in</Text>
             </View>
             <TextInput
               style={inputStyle}
