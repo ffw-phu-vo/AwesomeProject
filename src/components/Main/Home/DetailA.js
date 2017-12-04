@@ -5,12 +5,15 @@ import {
   Image,
   TouchableOpacity,
   Dimensions,
-  ScrollView
+  ScrollView,
+  StyleSheet,
+  WebView
 } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 
 import global from '../../global';
 
-import { styles } from '../../../styles/styles';
+import { styles, stylesHtml } from '../../../styles/styles';
 
 export default class DetailA extends Component {
   constructor(props) {
@@ -36,6 +39,8 @@ export default class DetailA extends Component {
       imageHeight = (imageWidth / 960) * 540;
     }
     const { banner } = this.props.navigation.state.params;
+    const fieldDescription = banner.field_description.replace(/\n/g, '');
+    const fieldBody = banner.body.replace(/\n/g, '');
     return (
       <ScrollView style={ styles.wrap }>
         <View style={styles.container} onLayout={this.getNewDimensions}>
@@ -46,15 +51,24 @@ export default class DetailA extends Component {
           </View>
           <View>
             <View style={styles.blockTitleWrap}>
-              <Text style={styles.blockTitle}>{banner.title}</Text>
-            </View>
-            <View style={styles.blockTitleWrap}>
               <Image
                 source={{ uri: `${global.baseUrl}${banner.field_image}` }}
                 style={{width: imageWidth, height: imageHeight}}
               />
             </View>
-            <Text>{banner.field_description}</Text>
+            <View style={styles.blockTitleWrap}>
+              <Text style={styles.blockTitle}>{banner.title}</Text>
+            </View>
+            <HTMLView
+              value={fieldDescription}
+              addLineBreaks={false}
+              stylesheet={stylesHtml}
+            />
+            <HTMLView
+              value={fieldBody}
+              addLineBreaks={false}
+              stylesheet={stylesHtml}
+            />
           </View>
         </View>
       </ScrollView>
