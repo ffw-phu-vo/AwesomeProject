@@ -59,36 +59,46 @@ export const styles = ResponsiveStylesheet.createSized("min-width", {
 
 export const stylesHtml = StyleSheet.create({
   p: {
+    marginTop: 0,
     marginBottom: 10,
     padding: 0,
+    backgroundColor: 'red',
     flex: 1
   },
   h1: {
+    marginTop: 0,
     marginBottom: 10,
     fontSize: 36,
     flex: 1
   },
   h2: {
+    marginTop: 0,
+    backgroundColor: 'blue',
     marginBottom: 10,
     fontSize: 30,
     flex: 1
   },
   h3: {
+    marginTop: 0,
     marginBottom: 10,
+    backgroundColor: 'blue',
     fontSize: 24,
     flex: 1
   },
   h4: {
+    marginTop: 0,
     marginBottom: 10,
     fontSize: 16,
     flex: 1
   },
   h5: {
+    marginTop: 0,
     marginBottom: 10,
     fontSize: 14,
     flex: 1
   },
   h6: {
+    marginTop: 0,
     marginBottom: 10,
     fontSize: 12,
     flex: 1
@@ -111,3 +121,55 @@ export const stylesHtml = StyleSheet.create({
     backgroundColor: primaryColor
   }
 });
+
+export const stylesHtml2 = {
+  p: {
+    marginTop: 0,
+    marginBottom: 10,
+    padding: 0,
+    flex: 1
+  },
+  h1: {
+    marginTop: 0,
+    marginBottom: 10,
+    fontSize: 36,
+    flex: 1
+  },
+  h2: {
+    marginTop: 0,
+    marginBottom: 10,
+    fontSize: 30,
+    flex: 1
+  },
+  h3: {
+    marginTop: 0,
+    marginBottom: 10,
+    fontSize: 24,
+    flex: 1
+  },
+  h4: {
+    marginTop: 0,
+    marginBottom: 10,
+    fontSize: 16,
+    flex: 1
+  },
+  h5: {
+    marginTop: 0,
+    marginBottom: 10,
+    fontSize: 14,
+    flex: 1
+  },
+  h6: {
+    marginTop: 0,
+    marginBottom: 10,
+    fontSize: 12,
+    flex: 1
+  },
+  a: {
+    color: primaryColor,
+    textDecorationLine: 'none'
+  },
+  mark: {
+    backgroundColor: primaryColor
+  }
+}

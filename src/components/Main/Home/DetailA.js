@@ -10,10 +10,18 @@ import {
   WebView
 } from 'react-native';
 import HTMLView from 'react-native-htmlview';
+import HTML from 'react-native-render-html';
 
 import global from '../../global';
 
-import { styles, stylesHtml } from '../../../styles/styles';
+import { styles, stylesHtml, stylesHtml2 } from '../../../styles/styles';
+
+const htmlContent = `
+    <h1>This HTML snippet is now rendered with native components !</h1>
+    <h2>Enjoy a webview-free and blazing fast application</h2>
+    <img src="https://i.imgur.com/dHLmxfO.jpg?2" />
+    <em style="textAlign: center;">Look at how happy this native cat is</em>
+`;
 
 export default class DetailA extends Component {
   constructor(props) {
@@ -41,6 +49,8 @@ export default class DetailA extends Component {
     const { banner } = this.props.navigation.state.params;
     const fieldDescription = banner.field_description.replace(/\n/g, '');
     const fieldBody = banner.body.replace(/\n/g, '');
+    console.log("---------");
+    console.log(fieldBody);
     return (
       <ScrollView style={ styles.wrap }>
         <View style={styles.container} onLayout={this.getNewDimensions}>
@@ -59,7 +69,7 @@ export default class DetailA extends Component {
             <View style={styles.blockTitleWrap}>
               <Text style={styles.blockTitle}>{banner.title}</Text>
             </View>
-            <HTMLView
+            {/*<HTMLView
               value={fieldDescription}
               addLineBreaks={false}
               stylesheet={stylesHtml}
@@ -68,6 +78,11 @@ export default class DetailA extends Component {
               value={fieldBody}
               addLineBreaks={false}
               stylesheet={stylesHtml}
+            />*/}
+            <HTML
+              imagesMaxWidth={imageWidth}
+              tagsStyles={stylesHtml2}
+              html={fieldBody}
             />
           </View>
         </View>
