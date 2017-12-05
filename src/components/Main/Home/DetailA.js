@@ -49,8 +49,6 @@ export default class DetailA extends Component {
     const { banner } = this.props.navigation.state.params;
     const fieldDescription = banner.field_description.replace(/\n/g, '');
     const fieldBody = banner.body.replace(/\n/g, '');
-    console.log("---------");
-    console.log(fieldBody);
     return (
       <ScrollView style={ styles.wrap }>
         <View style={styles.container} onLayout={this.getNewDimensions}>

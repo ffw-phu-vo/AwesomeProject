@@ -31,8 +31,8 @@ export default class App extends Component {
   componentDidMount() {
     getUser()
     .then(responseJson => {
-      console.log('-------test2-------');
-      console.log(responseJson);
+      // console.log('-------test2-------');
+      // console.log(responseJson);
       if (responseJson != null) {
         global.onSignIn(responseJson);
       }
